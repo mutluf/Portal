@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Portal.Application.Repositories;
 using Portal.Domain.Entities.Users;
 using Portal.Persistence.Context;
+using Portal.Persistence.Repositories;
 
 namespace Portal.Persistence
 {
@@ -13,6 +15,11 @@ namespace Portal.Persistence
             services.AddDbContext<PortalAPIDbContext>(options =>
             options.UseSqlServer(Configuration.ConnectionString));
 
+            services.AddScoped<IBlogRepository, BlogRepository>();
+            services.AddScoped<IEducationRepository, EducationRepository>();
+            services.AddScoped<IParticipantRepository, ParticipantRepository>();
+            services.AddScoped<ISeminarRepository, SeminarRepository>();
+            services.AddScoped<IWorkshopRepository, WorkshopRepository>();
 
             services.AddIdentity<User, Role>(options =>
             {
