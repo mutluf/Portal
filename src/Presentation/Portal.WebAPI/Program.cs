@@ -1,7 +1,7 @@
 using Portal.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
-ConfigurationManager config = new();
+
 
 // Add services to the container.
 
@@ -11,7 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-builder.Services.AddPersistenceService(config);
+builder.Services.AddPersistenceService();
 
 var app = builder.Build();
 

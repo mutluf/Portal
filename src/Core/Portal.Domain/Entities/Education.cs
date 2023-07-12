@@ -6,5 +6,6 @@ namespace Portal.Domain.Entities
     {
         public ICollection<Participant>? Participants { get; set; }
         public UserProfile UserProfile { get; set; }
+        
     }
 }

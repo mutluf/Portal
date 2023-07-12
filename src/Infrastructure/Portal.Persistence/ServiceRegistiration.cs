@@ -8,10 +8,10 @@ namespace Portal.Persistence
 {
     public static class ServiceRegistiration
     {
-        public static void AddPersistenceService(this IServiceCollection services, ConfigurationManager config)
+        public static void AddPersistenceService(this IServiceCollection services)
         {
             services.AddDbContext<PortalAPIDbContext>(options =>
-            options.UseSqlServer(config.GetConnectionString("MicrosoftSQL")));
+            options.UseSqlServer(Configuration.ConnectionString));
 
 
             services.AddIdentity<User, Role>(options =>
@@ -27,18 +27,18 @@ namespace Portal.Persistence
         }
     }
 
-    //public static class Configuration
-    //{
-    //    static public string ConnectionString
-    //    {
-    //        get
-    //        {
-    //            ConfigurationManager cfg = new ConfigurationManager();
-    //            cfg.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../../Presentation/Portal.WebAPI"));
-    //            cfg.AddJsonFile("appsettings.json");//microsoft.extensions.configuration.json adındaki paket üst 2 satır için gerekli. çok gerekli
+    public static class Configuration
+    {
+        static public string ConnectionString
+        {
+            get
+            {
+                ConfigurationManager cfg = new ConfigurationManager();
+                cfg.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../../Presentation/Portal.WebAPI"));
+                cfg.AddJsonFile("appsettings.json");//microsoft.extensions.configuration.json adındaki paket üst 2 satır için gerekli. çok gerekli
 
-    //            return cfg.GetConnectionString("MicrosoftSQL");
-    //        }
-    //    }
-    //}
+                return cfg.GetConnectionString("MicrosoftSQL");
+            }
+        }
+    }
 }
