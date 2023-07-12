@@ -1,8 +1,8 @@
-﻿using Portal.Domain.Entities.Common;
+﻿using Portal.Domain.Entities;
 
-namespace Portal.Domain.Entities
+namespace Portal.Application.DTOs
 {
-    public class Blog : Activity
+    public class BlogDTO
     {
         public string Title { get; set; }
         public string Content { get; set; }
@@ -10,7 +10,6 @@ namespace Portal.Domain.Entities
         public string CreatedBy { get; set; }
         public bool IsDeleted { get; set; } = false;
         public bool IsPublic { get; set; }
-        public UserProfile UserProfile { get; set; }
         public int UserProfileId { get; set; }
     }
 }
