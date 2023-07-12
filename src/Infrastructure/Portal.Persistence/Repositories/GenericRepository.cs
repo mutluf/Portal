@@ -16,6 +16,8 @@ namespace Portal.Persistence.Repositories
         }
         public DbSet<T> Table => _context.Set<T>();
 
+
+
         public async Task<bool> AddAysnc(T Model)
         {
             EntityEntry entityEntry = await Table.AddAsync(Model);

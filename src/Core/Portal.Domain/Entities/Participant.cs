@@ -1,10 +1,11 @@
 ﻿using Portal.Domain.Entities.Users;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Portal.Domain.Entities.Common;
 
 namespace Portal.Domain.Entities
 {
-    public class Participant
+    public class Participant:BaseEntity
     {
         [Key, ForeignKey(nameof(User))]
         public int Id { get; set; }
