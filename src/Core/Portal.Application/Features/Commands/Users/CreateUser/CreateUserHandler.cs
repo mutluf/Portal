@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Portal.Domain.Entities;
 using Portal.Domain.Entities.Users;
 
 namespace Portal.Application.Features.Commands.Users.CreateUser
@@ -18,6 +19,9 @@ namespace Portal.Application.Features.Commands.Users.CreateUser
         public async Task<CreateUserResponse> Handle(CreateUserRequest request, CancellationToken cancellationToken)
         {
             User user = _mapper.Map<User>(request);
+            UserProfile profile = new();
+            user.UserProfile = profile;
+
             IdentityResult result = await _userManager.CreateAsync(user, request.Password);
 
             List<string> errors = new List<string>();

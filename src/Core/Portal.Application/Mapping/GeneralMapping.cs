@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
+using Portal.Application.DTOs;
 using Portal.Application.Features.Commands.Users.CreateUser;
-using Portal.Application.Features.Commands.Users.LoginUser;
+using Portal.Domain.Entities;
 using Portal.Domain.Entities.Users;
 
 namespace Portal.Application.Mapping
@@ -10,6 +11,7 @@ namespace Portal.Application.Mapping
         public GeneralMapping()
         {
             CreateMap<CreateUserRequest, User>().ReverseMap();
+            CreateMap<BlogDTO, Blog>().ReverseMap();
         }
     }
 }
