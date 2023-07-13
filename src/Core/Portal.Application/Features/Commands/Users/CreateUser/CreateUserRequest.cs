@@ -1,8 +1,8 @@
 ﻿using MediatR;
 
-namespace Portal.Application.Features.Commands.Users
+namespace Portal.Application.Features.Commands.Users.CreateUser
 {
-    public class CreateUserRequest: IRequest<CreateUserResponse>
+    public class CreateUserRequest : IRequest<CreateUserResponse>
     {
         public string Surname { get; set; }
         public string Name { get; set; }

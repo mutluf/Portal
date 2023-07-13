@@ -1,4 +1,4 @@
-﻿namespace Portal.Application.Features.Commands.Users
+﻿namespace Portal.Application.Features.Commands.Users.CreateUser
 {
     public class CreateUserResponse
     {

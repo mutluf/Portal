@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Portal.Domain.Entities.Users;
 
-namespace Portal.Application.Features.Commands.Users
+namespace Portal.Application.Features.Commands.Users.CreateUser
 {
     public class CreateUserHandler : IRequestHandler<CreateUserRequest, CreateUserResponse>
     {
