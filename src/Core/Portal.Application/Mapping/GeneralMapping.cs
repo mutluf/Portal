@@ -12,6 +12,9 @@ namespace Portal.Application.Mapping
         {
             CreateMap<CreateUserRequest, User>().ReverseMap();
             CreateMap<BlogDTO, Blog>().ReverseMap();
+            CreateMap<ActivityDTO, Education>().ReverseMap();
+            CreateMap<ActivityDTO, Workshop>().ReverseMap();
+            CreateMap<ActivityDTO, Seminar>().ReverseMap();
         }
     }
 }
