@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Portal.Application.DTOs;
 
 namespace Portal.Application.Features.Queries.Educations.GetEducationById
 {
-    internal class GetEducationByIdResponse
+    public class GetEducationByIdResponse
     {
+        public ActivityDTO Education { get; set; }
     }
 }
