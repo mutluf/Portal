@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Portal.Application.Abstractions.Services;
 using Portal.Application.Repositories;
 using Portal.Domain.Entities.Users;
 using Portal.Persistence.Context;
 using Portal.Persistence.Repositories;
+using Portal.Persistence.Services;
 
 namespace Portal.Persistence
 {
@@ -20,6 +22,8 @@ namespace Portal.Persistence
             services.AddScoped<IParticipantRepository, ParticipantRepository>();
             services.AddScoped<ISeminarRepository, SeminarRepository>();
             services.AddScoped<IWorkshopRepository, WorkshopRepository>();
+
+            services.AddScoped<IRoleService,RoleService>();
 
             services.AddIdentity<User, Role>(options =>
             {

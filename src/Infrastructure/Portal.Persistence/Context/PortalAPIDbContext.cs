@@ -5,7 +5,7 @@ using Portal.Domain.Entities.Users;
 
 namespace Portal.Persistence.Context
 {
-    public class PortalAPIDbContext : IdentityDbContext<User, Role, int>
+    public class PortalAPIDbContext : IdentityDbContext<User, Role, string>
     {
         public PortalAPIDbContext(DbContextOptions options) : base(options)
         {

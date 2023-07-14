@@ -2,7 +2,7 @@
 
 namespace Portal.Domain.Entities.Users
 {
-    public class User : IdentityUser<int>
+    public class User : IdentityUser<string>
     {
         public string Name { get; set; }
         public string Surname { get; set; }
