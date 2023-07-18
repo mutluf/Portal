@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Portal.Application.DTOs;
+using Portal.Application.Features.Commands.Categories.CreateCategory;
 using Portal.Application.Features.Commands.Users.CreateUser;
 using Portal.Domain.Entities;
 using Portal.Domain.Entities.Users;
@@ -15,6 +16,7 @@ namespace Portal.Application.Mapping
             CreateMap<ActivityDTO, Education>().ReverseMap();
             CreateMap<ActivityDTO, Workshop>().ReverseMap();
             CreateMap<ActivityDTO, Seminar>().ReverseMap();
+            CreateMap<CreateCategoryRequest, Category>().ReverseMap();
         }
     }
 }
