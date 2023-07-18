@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Portal.Application.Features.Commands.Blogs.CreateBlog;
 using Portal.Application.Features.Commands.Blogs.DeleteBlog;
@@ -8,6 +9,7 @@ namespace Portal.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
     public class BlogsController : ControllerBase
     {
         private readonly IMediator _mediator;

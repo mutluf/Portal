@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Portal.Application.Features.Commands.Categories.CreateCategory;
 using Portal.Application.Features.Commands.Categories.DeleteCategory;
@@ -8,6 +8,7 @@ namespace Portal.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = "Organiser")]
     public class CategoriesController : ControllerBase
     {
         readonly IMediator _mediator;
