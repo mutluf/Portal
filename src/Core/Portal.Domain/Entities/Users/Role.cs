@@ -2,7 +2,7 @@
 
 namespace Portal.Domain.Entities.Users
 {
-    public class Role : IdentityRole<string>
+    public class Role : IdentityRole<int>
     {
     }
 }

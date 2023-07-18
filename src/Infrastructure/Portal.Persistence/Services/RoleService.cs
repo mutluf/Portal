@@ -25,18 +25,18 @@ namespace Portal.Persistence.Services
             return result.Succeeded;
         }
 
-        public IDictionary<string, string> GetAllRoles()
+        public IDictionary<int, string> GetAllRoles()
         {
             return _roleManager.Roles.ToDictionary(role => role.Id, role => role.Name);
         }
 
-        public async Task<(string id, string name)> GetRoleById(string id)
+        public async Task<(int id, string name)> GetRoleById(int id)
         {
             string role = await _roleManager.GetRoleIdAsync(new() { Id = id });
             return (id, role);  
         }
 
-        public async Task<bool> UpdateRole(string id ,string name)
+        public async Task<bool> UpdateRole(int id ,string name)
         {
             IdentityResult result = await _roleManager.UpdateAsync(new() {Id= id ,Name = name });
             return result.Succeeded;

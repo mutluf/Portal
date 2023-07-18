@@ -2,6 +2,6 @@
 {
     public class GetAllRolesResponse
     {
-        public IDictionary<string, string> Datas { get; set; }
+        public IDictionary<int, string> Datas { get; set; }
     }
 }
