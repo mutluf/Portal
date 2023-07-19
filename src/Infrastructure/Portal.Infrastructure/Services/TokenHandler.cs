@@ -2,7 +2,9 @@
 using Microsoft.IdentityModel.Tokens;
 using Portal.Application.Abstractions;
 using Portal.Application.DTOs;
+using Portal.Domain.Entities.Users;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 
 namespace Portal.Infrastructure.Services
@@ -16,10 +18,10 @@ namespace Portal.Infrastructure.Services
             _configuration = configuration;
         }
 
-        public Token CreateToken(int minute)
+        public Token CreateToken(int minute, User user)
         {
-            Token token = new Token();
-            SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(_configuration["Token:SecurityKey"]));
+            Token token = new();
+            SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(_configuration["Token:SecurityKey"]));//debugla buraları.
             SigningCredentials signingCredentials = new(securityKey, SecurityAlgorithms.HmacSha256);
             token.Expiration = DateTime.Now.AddMinutes(minute);
 
@@ -28,11 +30,12 @@ namespace Portal.Infrastructure.Services
                issuer: _configuration["Token:Issuer"],
                expires: token.Expiration,
                notBefore: DateTime.Now,
-               signingCredentials: signingCredentials
+               signingCredentials: signingCredentials,
+               claims: new List<Claim> { new(ClaimTypes.Name, user.UserName) }
                );
 
             JwtSecurityTokenHandler tokenHandler = new();
-            token.AccessToken = tokenHandler.WriteToken(securityToken);
+            token.AccessToken = tokenHandler.WriteToken(securityToken);//token son dönüş.
             return token;
         }
     }
