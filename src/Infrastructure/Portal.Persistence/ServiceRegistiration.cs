@@ -23,6 +23,7 @@ namespace Portal.Persistence
             services.AddScoped<ISeminarRepository, SeminarRepository>();
             services.AddScoped<IWorkshopRepository, WorkshopRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IProfileRepository, ProfileRepository>();
 
             services.AddScoped<IRoleService,RoleService>();
 

@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Portal.Domain.Entities;
 using Portal.Domain.Entities.Users;
-using System.Reflection.Emit;
 
 namespace Portal.Persistence.Context
 {
