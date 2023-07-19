@@ -30,7 +30,7 @@ namespace Portal.Application.Features.Commands.Users.LoginUser
 
             if (result.Succeeded)
             {
-                Token token = _tokenHandler.CreateToken(20);
+                Token token = _tokenHandler.CreateToken(20, user);
                 return new()
                 {
                     Message = "Giriş yapıldı.",

@@ -33,6 +33,7 @@ namespace Portal.Application.Features.Commands.Users.CreateUser
 
             if (result.Succeeded)
             {
+                await _userManager.AddToRoleAsync(user, "Participant");
                 return new()
                 {
                     Message = "Kayıt başarılı!"

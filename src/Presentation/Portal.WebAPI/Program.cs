@@ -1,9 +1,12 @@
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Portal.Application.Abstractions;
+using Portal.Domain.Entities.Users;
 using Portal.Persistence;
+using System.Security.Claims;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -47,45 +50,42 @@ builder.Services.AddSwaggerGen(options =>
 
 
 builder.Services.AddPersistenceService();
-builder.Services.AddAuthorization(options =>
+
+
+builder.Services.AddAuthentication(options =>
 {
-    options.AddPolicy("OrganiserOnly", policy =>
-        policy.RequireRole("Organiser"));
-
-    options.AddPolicy("ProducerOnly", policy =>
-        policy.RequireRole("Producer"));
-});
-
-
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer("Organiser", options =>
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new()
     {
-        options.TokenValidationParameters = new()
-        {
-            ValidateAudience = true,
-            ValidateIssuer = true,
-            ValidateIssuerSigningKey = true,
-            ValidateLifetime = true,
+        ValidateAudience = true,
+        ValidateIssuer = true,
+        ValidateIssuerSigningKey = true,
+        ValidateLifetime = true,
 
-            ValidAudience = builder.Configuration["Token:Audience"],
-            ValidIssuer = builder.Configuration["Token:Issuer"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Token:SecurityKey"]))
-        };
-    })
-    .AddJwtBearer("Producer", options =>
+        ValidAudience = builder.Configuration["Token:Audience"],
+        ValidIssuer = builder.Configuration["Token:Issuer"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Token:SecurityKey"])),
+        NameClaimType = ClaimTypes.Name,
+    };
+    options.Events = new JwtBearerEvents
     {
-        options.TokenValidationParameters = new()
+        OnTokenValidated = async context =>
         {
-            ValidateAudience = true,
-            ValidateIssuer = true,
-            ValidateIssuerSigningKey = true,
-            ValidateLifetime = true,
-
-            ValidAudience = builder.Configuration["Token:Audience"],
-            ValidIssuer = builder.Configuration["Token:Issuer"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Token:SecurityKey"]))
-        };
-    });
+            var userManager = context.HttpContext.RequestServices.GetRequiredService<UserManager<User>>();
+            var userName = context.Principal.FindFirstValue(ClaimTypes.Name);
+            var user = await userManager.FindByNameAsync(userName);
+            var roles = await userManager.GetRolesAsync(user);
+            foreach (var role in roles)
+            {
+                context.Principal.Identities.First().AddClaim(new Claim(ClaimTypes.Role, role));
+            }
+        }
+    };
+}
+);
 
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
