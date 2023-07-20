@@ -17,8 +17,4 @@
     <ProjectReference Include="..\Portal.Domain\Portal.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Commands\Profiles\" />
-  </ItemGroup>
-
 </Project>

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Portal.Application.Features.Commands.Educations.CreateEducation;
 using Portal.Application.Features.Commands.Educations.DeleteEducation;
+using Portal.Application.Features.Commands.Educations.UpdateEducation;
 using Portal.Application.Features.Queries.Educations.GetEducationById;
 
 namespace Portal.WebAPI.Controllers
@@ -33,6 +34,13 @@ namespace Portal.WebAPI.Controllers
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] DeleteEducationRequest request)
+        {
+            await _mediator.Send(request);
+            return Ok();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdateEducationRequest request)
         {
             await _mediator.Send(request);
             return Ok();
