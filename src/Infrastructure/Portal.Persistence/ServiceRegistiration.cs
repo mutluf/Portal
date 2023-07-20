@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Hangfire;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Portal.Application.Abstractions.Services;
@@ -26,6 +27,14 @@ namespace Portal.Persistence
             services.AddScoped<IProfileRepository, ProfileRepository>();
 
             services.AddScoped<IRoleService,RoleService>();
+
+            services.AddHangfire(configuration => configuration
+                    .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
+                    .UseSimpleAssemblyNameTypeSerializer()
+                    .UseRecommendedSerializerSettings()
+                    .UseSqlServerStorage(Configuration.ConnectionString));
+
+            services.AddHangfireServer();
 
             services.AddIdentity<User, Role>(options =>
             {
