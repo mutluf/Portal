@@ -1,7 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Portal.Application.Features.Commands.Educations.UpdateEducation;
 using Portal.Application.Features.Commands.Seminars.CreateSeminar;
 using Portal.Application.Features.Commands.Seminars.DeleteSeminar;
+using Portal.Application.Features.Commands.Seminars.UpdateSeminar;
 using Portal.Application.Features.Queries.Seminars.GetSeminarById;
 
 namespace Portal.WebAPI.Controllers
@@ -34,6 +36,13 @@ namespace Portal.WebAPI.Controllers
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] DeleteSeminarRequest request)
+        {
+            await _mediator.Send(request);
+            return Ok();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdateSeminarRequest request)
         {
             await _mediator.Send(request);
             return Ok();

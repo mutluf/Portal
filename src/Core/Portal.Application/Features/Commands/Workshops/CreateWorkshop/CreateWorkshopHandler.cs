@@ -18,6 +18,9 @@ namespace Portal.Application.Features.Commands.Workshops.CreateWorkshop
         public async Task<Unit> Handle(CreateWorkshopRequest request, CancellationToken cancellationToken)
         {
             Workshop workshop = _mapper.Map<Workshop>(request);
+            List<Participant> workshops = new();
+            workshop.Participants = workshops;
+
 
             await _workshopRepository.AddAysnc(workshop);
             await _workshopRepository.SaveAysnc();

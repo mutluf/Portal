@@ -18,6 +18,8 @@ namespace Portal.Application.Features.Commands.Seminars.CreateSeminar
         public async Task<Unit> Handle(CreateSeminarRequest request, CancellationToken cancellationToken)
         {
             Seminar seminar = _mapper.Map<Seminar>(request);
+            List<Participant> participants = new();
+            seminar.Participants = participants;
 
             await _seminarRepository.AddAysnc(seminar);
             await _seminarRepository.SaveAysnc();

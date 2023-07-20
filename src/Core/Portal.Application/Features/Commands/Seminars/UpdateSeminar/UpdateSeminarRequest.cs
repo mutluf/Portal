@@ -1,9 +1,8 @@
 ﻿using MediatR;
-using Portal.Application.DTOs;
 
-namespace Portal.Application.Features.Commands.Workshops.CreateWorkshop
+namespace Portal.Application.Features.Commands.Seminars.UpdateSeminar
 {
-    public class CreateWorkshopRequest : IRequest
+    public class UpdateSeminarRequest : IRequest<UpdateSeminarResponse>
     {
         public int Id { get; set; }
         public string? Title { get; set; }
@@ -11,6 +10,5 @@ namespace Portal.Application.Features.Commands.Workshops.CreateWorkshop
         public bool IsPublic { get; set; } = true;
         public bool IsCanceled { get; set; } = false;
         public DateTime StartTime { get; set; }
-        public int UserProfileId { get; set; }
     }
 }
