@@ -6,7 +6,7 @@ using Portal.Application.Features.Queries.Workshops.GetWorkshopById;
 
 namespace Portal.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/workshops")]
     [ApiController]
     public class WorkshopsController : ControllerBase
     {
@@ -24,14 +24,14 @@ namespace Portal.WebAPI.Controllers
             return Ok();
         }
 
-        [HttpGet("{Id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Get([FromRoute] GetWorkshopByIdRequest request)
         {
             GetWorkshopByIdResponse response = await _mediator.Send(request);
             return Ok(response);
         }
 
-        [HttpDelete("{Id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] DeleteWorkshopRequest request)
         {
             await _mediator.Send(request);

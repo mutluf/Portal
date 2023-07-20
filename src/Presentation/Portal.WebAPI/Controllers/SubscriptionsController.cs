@@ -5,7 +5,7 @@ using Portal.Application.Features.Commands.Subscriptions.CreateSubscription.Crea
 
 namespace Portal.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/subscriptions")]
     [ApiController]
     public class SubscriptionsController : ControllerBase
     {

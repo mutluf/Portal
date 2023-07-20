@@ -5,7 +5,7 @@ using Portal.Application.Features.Commands.Users.ChangeRole;
 
 namespace Portal.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/profiles")]
     [ApiController]
     public class ProfilesController : ControllerBase
     {

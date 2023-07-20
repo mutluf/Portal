@@ -7,7 +7,7 @@ using Portal.Application.Features.Commands.Users.LoginUser;
 
 namespace FLoraAPI.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/users")]
     [ApiController]
    
     public class UsersController : ControllerBase
@@ -24,7 +24,7 @@ namespace FLoraAPI.API.Controllers
             return Ok(response);
         }
     
-        [HttpPost("[action]")]
+        [HttpPost("login")]
         public async Task<IActionResult> LoginUser([FromBody] LoginUserRequest request)
         {
             LoginUserResponse response = await _mediator.Send(request);

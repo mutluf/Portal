@@ -6,7 +6,7 @@ using Portal.Application.Features.Queries.Educations.GetEducationById;
 
 namespace Portal.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/educations")]
     [ApiController]
     public class EducationsController : ControllerBase
     {
@@ -24,14 +24,14 @@ namespace Portal.WebAPI.Controllers
             return Ok();
         }
 
-        [HttpGet("{Id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Get([FromRoute] GetEducationByIdRequest request)
         {
             GetEducationByIdResponse response = await _mediator.Send(request);
             return Ok(response);
         }
 
-        [HttpDelete("{Id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] DeleteEducationRequest request)
         {
             await _mediator.Send(request);

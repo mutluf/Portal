@@ -7,7 +7,7 @@ using Portal.Application.Features.Queries.Blogs.GetBlogById;
 
 namespace Portal.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/blogs")]
     [ApiController]
 
     public class BlogsController : ControllerBase
@@ -26,14 +26,14 @@ namespace Portal.WebAPI.Controllers
             return Ok();
         }
 
-        [HttpGet("{Id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Get([FromRoute] GetBlogByIdRequest request)
         {
             GetBlogByIdResponse response = await _mediator.Send(request);
             return Ok(response);
         }
 
-        [HttpDelete("{Id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] DeleteBlogRequest request)
         {
             await _mediator.Send(request);

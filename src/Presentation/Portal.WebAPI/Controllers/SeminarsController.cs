@@ -6,7 +6,7 @@ using Portal.Application.Features.Queries.Seminars.GetSeminarById;
 
 namespace Portal.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/seminars")]
     [ApiController]
     public class SeminarsController : ControllerBase
     {
@@ -24,7 +24,7 @@ namespace Portal.WebAPI.Controllers
             return Ok();
         }
 
-        [HttpGet("{Id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> Get([FromRoute] GetSeminarByIdRequest request)
         {
             GetSeminarByIdResponse response = await _mediator.Send(request);
@@ -32,7 +32,7 @@ namespace Portal.WebAPI.Controllers
         }
 
 
-        [HttpDelete("{Id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] DeleteSeminarRequest request)
         {
             await _mediator.Send(request);

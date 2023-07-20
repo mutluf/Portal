@@ -6,7 +6,7 @@ using Portal.Application.Features.Commands.Categories.DeleteCategory;
 
 namespace Portal.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/categories")]
     [ApiController]
     [Authorize(AuthenticationSchemes = "Organiser")]
     public class CategoriesController : ControllerBase
@@ -25,7 +25,7 @@ namespace Portal.WebAPI.Controllers
             return Ok();
         }
 
-        [HttpDelete("{Id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Create([FromRoute] DeleteCategoryRequest request)
         {
             await _mediator.Send(request);

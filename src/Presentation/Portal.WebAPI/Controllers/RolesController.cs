@@ -9,7 +9,7 @@ using Portal.Application.Features.Queries.Roles.GetRoleById;
 
 namespace Portal.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/roles")]
     [ApiController]
     public class RolesController : ControllerBase
     {
@@ -27,7 +27,7 @@ namespace Portal.WebAPI.Controllers
             return Ok(response);
         }
 
-        [HttpGet("{Id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetRole([FromRoute] GetRoleByIdRequest request)
         {
             GetRoleByIdResponse response = await _mediator.Send(request);
@@ -41,7 +41,7 @@ namespace Portal.WebAPI.Controllers
             return Ok(response);
         }
 
-        [HttpPut("{Id}")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateRole([FromBody ,FromRoute] UpdateRoleRequest request)
         {
             UpdateRoleResponse response = await _mediator.Send(request);
