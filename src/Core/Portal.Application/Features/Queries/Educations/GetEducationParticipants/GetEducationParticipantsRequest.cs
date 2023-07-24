@@ -5,6 +5,5 @@ namespace Portal.Application.Features.Queries.Educations.GetEducationParticipant
     public class GetEducationParticipantsRequest : IRequest<GetEducationParticipantsResponse>
     {
         public int Id { get; set; }
-        public string Word { get; set; }
     }
 }
