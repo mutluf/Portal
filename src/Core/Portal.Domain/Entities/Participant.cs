@@ -1,7 +1,5 @@
-﻿using Portal.Domain.Entities.Users;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using Portal.Domain.Entities.Common;
+﻿using Portal.Domain.Entities.Common;
+using Portal.Domain.Entities.Users;
 
 namespace Portal.Domain.Entities
 {

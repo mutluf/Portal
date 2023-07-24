@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Portal.Persistence.Context;
 
@@ -11,9 +12,10 @@ using Portal.Persistence.Context;
 namespace Portal.Persistence.Migrations
 {
     [DbContext(typeof(PortalAPIDbContext))]
-    partial class PortalAPIDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230724123706_mig_4")]
+    partial class mig_4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -308,6 +310,10 @@ namespace Portal.Persistence.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
@@ -670,11 +676,9 @@ namespace Portal.Persistence.Migrations
 
             modelBuilder.Entity("Portal.Domain.Entities.Participant", b =>
                 {
-                    b.HasOne("Portal.Domain.Entities.Users.User", "User")
+                    b.HasOne("Portal.Domain.Entities.Users.User", null)
                         .WithOne("Participant")
                         .HasForeignKey("Portal.Domain.Entities.Participant", "UserId");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Portal.Domain.Entities.Seminar", b =>
