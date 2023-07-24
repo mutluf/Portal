@@ -1,11 +1,10 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Portal.Application.Features.Commands.Seminars.UpdateSeminar;
 using Portal.Application.Features.Commands.Workshops.CreateWorkshop;
 using Portal.Application.Features.Commands.Workshops.DeleteWorkshop;
-using Portal.Application.Features.Queries.Participants.GetAllParticipantsByWorkshopId;
 using Portal.Application.Features.Queries.Workshops.GetWorkshopById;
+using Portal.Application.Features.Queries.Workshops.GetWorkshopParticipants;
 
 namespace Portal.WebAPI.Controllers
 {
@@ -49,10 +48,10 @@ namespace Portal.WebAPI.Controllers
             return Ok();
         }
 
-        [HttpGet("{Id}/[action]")]
-        public async Task<IActionResult> gets([FromRoute] GetParticipantsByWorkshopRequest request)
+        [HttpGet("{Id}/participants")]
+        public async Task<IActionResult> GetParticipants([FromRoute] GetWorkshopParticipantsRequest request)
         {
-            GetParticipantsByWorkshopResponse response =  await _mediator.Send(request);
+            GetWorkshopParticipantsResponse response =  await _mediator.Send(request);
             return Ok(response);
         }
     }

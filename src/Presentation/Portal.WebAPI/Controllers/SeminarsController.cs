@@ -5,6 +5,7 @@ using Portal.Application.Features.Commands.Seminars.CreateSeminar;
 using Portal.Application.Features.Commands.Seminars.DeleteSeminar;
 using Portal.Application.Features.Commands.Seminars.UpdateSeminar;
 using Portal.Application.Features.Queries.Seminars.GetSeminarById;
+using Portal.Application.Features.Queries.Seminars.GetSeminarParticipants;
 
 namespace Portal.WebAPI.Controllers
 {
@@ -47,6 +48,13 @@ namespace Portal.WebAPI.Controllers
         {
             await _mediator.Send(request);
             return Ok();
+        }
+
+        [HttpGet("{Id}/participants")]
+        public async Task<IActionResult> GetParticipants([FromRoute] GetSeminarParticipantsRequest request)
+        {
+            GetSeminarParticipantsResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
     }
 }
