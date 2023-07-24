@@ -1,6 +1,6 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Portal.Application.Features.Commands.Educations.UpdateEducation;
 using Portal.Application.Features.Commands.Seminars.CreateSeminar;
 using Portal.Application.Features.Commands.Seminars.DeleteSeminar;
 using Portal.Application.Features.Commands.Seminars.UpdateSeminar;
@@ -10,6 +10,7 @@ namespace Portal.WebAPI.Controllers
 {
     [Route("api/seminars")]
     [ApiController]
+    [Authorize(Roles = "Organiser")]
     public class SeminarsController : ControllerBase
     {
         private readonly IMediator _mediator;

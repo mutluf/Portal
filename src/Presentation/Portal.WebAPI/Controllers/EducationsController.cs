@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Portal.Application.Features.Commands.Educations.CreateEducation;
 using Portal.Application.Features.Commands.Educations.DeleteEducation;
@@ -9,6 +10,7 @@ namespace Portal.WebAPI.Controllers
 {
     [Route("api/educations")]
     [ApiController]
+    [Authorize(Roles = "Organiser")]
     public class EducationsController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -19,7 +21,7 @@ namespace Portal.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateBlog([FromBody] CreateEducationRequest request)
+        public async Task<IActionResult> Create([FromBody] CreateEducationRequest request)
         {
             await _mediator.Send(request);
             return Ok();

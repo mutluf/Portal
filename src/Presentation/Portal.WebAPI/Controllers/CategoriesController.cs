@@ -8,7 +8,6 @@ namespace Portal.WebAPI.Controllers
 {
     [Route("api/categories")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = "Organiser")]
     public class CategoriesController : ControllerBase
     {
         readonly IMediator _mediator;

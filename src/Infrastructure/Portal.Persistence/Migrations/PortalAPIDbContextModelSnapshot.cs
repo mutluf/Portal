@@ -295,15 +295,22 @@ namespace Portal.Persistence.Migrations
             modelBuilder.Entity("Portal.Domain.Entities.Participant", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ParticipantCount")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Participants");
                 });
@@ -347,16 +354,25 @@ namespace Portal.Persistence.Migrations
             modelBuilder.Entity("Portal.Domain.Entities.UserProfile", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserRole")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("UserProfiles");
                 });
@@ -644,9 +660,7 @@ namespace Portal.Persistence.Migrations
                 {
                     b.HasOne("Portal.Domain.Entities.Users.User", "User")
                         .WithOne("Participant")
-                        .HasForeignKey("Portal.Domain.Entities.Participant", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Portal.Domain.Entities.Participant", "UserId");
 
                     b.Navigation("User");
                 });
@@ -666,9 +680,7 @@ namespace Portal.Persistence.Migrations
                 {
                     b.HasOne("Portal.Domain.Entities.Users.User", "User")
                         .WithOne("UserProfile")
-                        .HasForeignKey("Portal.Domain.Entities.UserProfile", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Portal.Domain.Entities.UserProfile", "UserId");
 
                     b.Navigation("User");
                 });

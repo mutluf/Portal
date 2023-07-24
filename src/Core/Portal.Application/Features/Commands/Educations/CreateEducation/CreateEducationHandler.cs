@@ -19,6 +19,7 @@ namespace Portal.Application.Features.Commands.Educations.CreateEducation
         public async Task<Unit> Handle(CreateEducationRequest request, CancellationToken cancellationToken)
         {
             Education education = _mapper.Map<Education>(request);
+
             List<Participant> participants = new();
             education.Participants = participants;
 

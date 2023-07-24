@@ -7,13 +7,12 @@ namespace Portal.Domain.Entities
 {
     public class UserProfile:BaseEntity
     {
-        [Key, ForeignKey(nameof(User))]
-        public int Id { get; set; }
-        public User User { get; set; }
-        public string UserRole { get; set; }
-        public ICollection<Blog> Blogs { get; set; }
-        public ICollection<Education> Educations { get; set; }
-        public ICollection<Seminar> Seminars { get; set; }
-        public ICollection<Workshop> Workshops { get; set; }
+        public int? UserId { get; set; }
+        public User? User { get; set; }
+        public string? UserRole { get; set; }
+        public ICollection<Blog>? Blogs { get; set; }
+        public ICollection<Education>? Educations { get; set; }
+        public ICollection<Seminar>? Seminars { get; set; }
+        public ICollection<Workshop>? Workshops { get; set; }
     }
 }

@@ -12,8 +12,8 @@ using Portal.Persistence.Context;
 namespace Portal.Persistence.Migrations
 {
     [DbContext(typeof(PortalAPIDbContext))]
-    [Migration("20230718113710_mig_2_categoryUser")]
-    partial class mig_2_categoryUser
+    [Migration("20230724081422_mig_1")]
+    partial class mig_1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -231,8 +231,9 @@ namespace Portal.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("Content")
-                        .HasColumnType("int");
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
@@ -248,12 +249,6 @@ namespace Portal.Persistence.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.HasKey("CategoryId", "UserId");
@@ -302,15 +297,22 @@ namespace Portal.Persistence.Migrations
             modelBuilder.Entity("Portal.Domain.Entities.Participant", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ParticipantCount")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Participants");
                 });
@@ -354,12 +356,25 @@ namespace Portal.Persistence.Migrations
             modelBuilder.Entity("Portal.Domain.Entities.UserProfile", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserRole")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("UserProfiles");
                 });
@@ -647,9 +662,7 @@ namespace Portal.Persistence.Migrations
                 {
                     b.HasOne("Portal.Domain.Entities.Users.User", "User")
                         .WithOne("Participant")
-                        .HasForeignKey("Portal.Domain.Entities.Participant", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Portal.Domain.Entities.Participant", "UserId");
 
                     b.Navigation("User");
                 });
@@ -669,9 +682,7 @@ namespace Portal.Persistence.Migrations
                 {
                     b.HasOne("Portal.Domain.Entities.Users.User", "User")
                         .WithOne("UserProfile")
-                        .HasForeignKey("Portal.Domain.Entities.UserProfile", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Portal.Domain.Entities.UserProfile", "UserId");
 
                     b.Navigation("User");
                 });
