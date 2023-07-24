@@ -5,6 +5,7 @@ using Portal.Application.Features.Commands.Seminars.CreateSeminar;
 using Portal.Application.Features.Commands.Seminars.DeleteSeminar;
 using Portal.Application.Features.Commands.Seminars.UpdateSeminar;
 using Portal.Application.Features.Queries.Seminars.GetSeminarById;
+using Portal.Application.Features.Queries.Seminars.GetSeminarParticipant;
 using Portal.Application.Features.Queries.Seminars.GetSeminarParticipants;
 
 namespace Portal.WebAPI.Controllers
@@ -19,6 +20,18 @@ namespace Portal.WebAPI.Controllers
         public SeminarsController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpGet("{id}/participant/{name}")]
+        public async Task<IActionResult> GetParticipant([FromRoute] int id, [FromRoute] string name)
+        {
+            var request = new GetSeminarParticipantRequest
+            {
+                Id = id,
+                Word = name
+            };
+            var response = await _mediator.Send(request);
+            return Ok(response);
         }
 
         [HttpPost]

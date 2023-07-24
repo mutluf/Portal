@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Portal.Application.Features.Commands.Seminars.UpdateSeminar;
 using Portal.Application.Features.Commands.Workshops.CreateWorkshop;
 using Portal.Application.Features.Commands.Workshops.DeleteWorkshop;
+using Portal.Application.Features.Queries.Seminars.GetSeminarParticipant;
 using Portal.Application.Features.Queries.Workshops.GetWorkshopById;
+using Portal.Application.Features.Queries.Workshops.GetWorkshopParticipant;
 using Portal.Application.Features.Queries.Workshops.GetWorkshopParticipants;
 
 namespace Portal.WebAPI.Controllers
@@ -18,6 +20,18 @@ namespace Portal.WebAPI.Controllers
         public WorkshopsController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpGet("{id}/participant/{name}")]
+        public async Task<IActionResult> GetParticipant([FromRoute] int id, [FromRoute] string name)
+        {
+            var request = new GetWorkshopParticipantRequest
+            {
+                Id = id,
+                Word = name
+            };
+            var response = await _mediator.Send(request);
+            return Ok(response);
         }
 
         [HttpPost]
