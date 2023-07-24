@@ -5,6 +5,7 @@ using Portal.Application.Features.Commands.Educations.CreateEducation;
 using Portal.Application.Features.Commands.Educations.DeleteEducation;
 using Portal.Application.Features.Commands.Educations.UpdateEducation;
 using Portal.Application.Features.Queries.Educations.GetEducationById;
+using Portal.Application.Features.Queries.Seminars.GetSeminarParticipants;
 
 namespace Portal.WebAPI.Controllers
 {
@@ -46,6 +47,13 @@ namespace Portal.WebAPI.Controllers
         {
             await _mediator.Send(request);
             return Ok();
+        }
+
+        [HttpGet("{Id}/participants")]
+        public async Task<IActionResult> GetParticipants([FromRoute] GetEducationByIdRequest request)
+        {
+            GetEducationByIdResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
     }
 }
