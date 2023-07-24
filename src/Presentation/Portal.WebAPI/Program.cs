@@ -11,6 +11,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using Portal.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -95,6 +96,7 @@ builder.Services.AddAuthentication(options =>
 }
 );
 
+builder.Services.AddInfrastructureServices();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
