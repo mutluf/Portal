@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Portal.Persistence.Context;
 
@@ -11,9 +12,10 @@ using Portal.Persistence.Context;
 namespace Portal.Persistence.Migrations
 {
     [DbContext(typeof(PortalAPIDbContext))]
-    partial class PortalAPIDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230724153037_mig_6")]
+    partial class mig_6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,7 +36,7 @@ namespace Portal.Persistence.Migrations
 
                     b.HasIndex("ParticipantsId");
 
-                    b.ToTable("EducationParticipant", (string)null);
+                    b.ToTable("EducationParticipant");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -152,7 +154,7 @@ namespace Portal.Persistence.Migrations
 
                     b.HasIndex("SeminarsId");
 
-                    b.ToTable("ParticipantSeminar", (string)null);
+                    b.ToTable("ParticipantSeminar");
                 });
 
             modelBuilder.Entity("ParticipantWorkshop", b =>
@@ -167,7 +169,7 @@ namespace Portal.Persistence.Migrations
 
                     b.HasIndex("WorkshopsId");
 
-                    b.ToTable("ParticipantWorkshop", (string)null);
+                    b.ToTable("ParticipantWorkshop");
                 });
 
             modelBuilder.Entity("Portal.Domain.Entities.Blog", b =>
@@ -226,7 +228,7 @@ namespace Portal.Persistence.Migrations
 
                     b.HasIndex("UserProfileId");
 
-                    b.ToTable("Blogs", (string)null);
+                    b.ToTable("Blogs");
                 });
 
             modelBuilder.Entity("Portal.Domain.Entities.Category", b =>
@@ -246,7 +248,7 @@ namespace Portal.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Portal.Domain.Entities.CategoryUser", b =>
@@ -261,7 +263,7 @@ namespace Portal.Persistence.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("CategoryUser", (string)null);
+                    b.ToTable("CategoryUser");
                 });
 
             modelBuilder.Entity("Portal.Domain.Entities.Education", b =>
@@ -305,7 +307,7 @@ namespace Portal.Persistence.Migrations
 
                     b.HasIndex("UserProfileId");
 
-                    b.ToTable("Educations", (string)null);
+                    b.ToTable("Educations");
                 });
 
             modelBuilder.Entity("Portal.Domain.Entities.Participant", b =>
@@ -328,7 +330,7 @@ namespace Portal.Persistence.Migrations
                         .IsUnique()
                         .HasFilter("[UserId] IS NOT NULL");
 
-                    b.ToTable("Participants", (string)null);
+                    b.ToTable("Participants");
                 });
 
             modelBuilder.Entity("Portal.Domain.Entities.Seminar", b =>
@@ -372,7 +374,7 @@ namespace Portal.Persistence.Migrations
 
                     b.HasIndex("UserProfileId");
 
-                    b.ToTable("Seminars", (string)null);
+                    b.ToTable("Seminars");
                 });
 
             modelBuilder.Entity("Portal.Domain.Entities.UserProfile", b =>
@@ -398,7 +400,7 @@ namespace Portal.Persistence.Migrations
                         .IsUnique()
                         .HasFilter("[UserId] IS NOT NULL");
 
-                    b.ToTable("UserProfiles", (string)null);
+                    b.ToTable("UserProfiles");
                 });
 
             modelBuilder.Entity("Portal.Domain.Entities.Users.Role", b =>
@@ -548,7 +550,7 @@ namespace Portal.Persistence.Migrations
 
                     b.HasIndex("UserProfileId");
 
-                    b.ToTable("Workshops", (string)null);
+                    b.ToTable("Workshops");
                 });
 
             modelBuilder.Entity("EducationParticipant", b =>

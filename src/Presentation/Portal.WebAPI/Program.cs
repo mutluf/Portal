@@ -12,6 +12,8 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using Portal.Infrastructure;
+using Serilog;
+using Serilog.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,6 +56,14 @@ builder.Services.AddSwaggerGen(options =>
 
 
 builder.Services.AddPersistenceService();
+
+Logger log = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("logs/log.txt")
+    .WriteTo.MSSqlServer(builder.Configuration.GetConnectionString("MicrosoftSQL"), "logs", autoCreateSqlTable: true)
+    .CreateLogger();
+
+builder.Host.UseSerilog(log);
 
 JsonSerializerOptions options = new()
 {

@@ -6,5 +6,9 @@ namespace Portal.Domain.Entities
     {
         public string Content { get; set; }
         public  ICollection<CategoryUser>? Users { get; set; }
+        public ICollection<Seminar>? Seminars { get; set; }
+        public ICollection<Workshop>? Workshops { get; set; }
+        public ICollection<Education>? Educations { get; set; }
+        public ICollection<Blog>? Blogs { get; set; }
     }
 }
