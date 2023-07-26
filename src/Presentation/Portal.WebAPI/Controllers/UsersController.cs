@@ -1,11 +1,9 @@
-﻿
-
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Portal.Application.Features.Commands.Users.CreateUser;
 using Portal.Application.Features.Commands.Users.LoginUser;
 
-namespace FLoraAPI.API.Controllers
+namespace Portal.WebAPI.Controllers
 {
     [Route("api/users")]
     [ApiController]

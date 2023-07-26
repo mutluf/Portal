@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 using Portal.Application.Abstractions;
 using Portal.Application.DTOs;
 using Portal.Domain.Entities.Users;
@@ -11,11 +12,13 @@ namespace Portal.Application.Features.Commands.Users.LoginUser
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly ITokenHandler _tokenHandler;
-        public LoginUserHandler(UserManager<User> userManager, SignInManager<User> signInManager, ITokenHandler tokenHandler)
+        private readonly ILogger<LoginUserHandler> _logger;
+        public LoginUserHandler(UserManager<User> userManager, SignInManager<User> signInManager, ITokenHandler tokenHandler, ILogger<LoginUserHandler> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenHandler = tokenHandler;
+            _logger = logger;
         }
 
         public async Task<LoginUserResponse> Handle(LoginUserRequest request, CancellationToken cancellationToken)
@@ -30,7 +33,9 @@ namespace Portal.Application.Features.Commands.Users.LoginUser
 
             if (result.Succeeded)
             {
+                
                 Token token = _tokenHandler.CreateToken(20, user);
+                _logger.LogInformation(user.UserName + " giriş yaptı.");
                 return new()
                 {
                     Message = "Giriş yapıldı.",

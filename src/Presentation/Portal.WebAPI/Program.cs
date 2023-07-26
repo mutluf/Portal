@@ -17,6 +17,8 @@ using Serilog;
 using Serilog.Sinks.MSSqlServer;
 using System.Collections.ObjectModel;
 using Portal.WebAPI;
+using Microsoft.AspNetCore.HttpLogging;
+using Serilog.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -93,6 +95,17 @@ Logger log = new LoggerConfiguration()
 
 builder.Host.UseSerilog(log);
 
+builder.Services.AddHttpLogging(logging =>
+{
+    logging.LoggingFields = HttpLoggingFields.All;
+    logging.RequestHeaders.Add("sec-ch-ua");
+    logging.ResponseHeaders.Add("MyResponseHeader");
+    logging.MediaTypeOptions.AddText("application/javascript");
+    logging.RequestBodyLogLimit = 4096;
+    logging.ResponseBodyLogLimit = 4096;
+
+});
+
 JsonSerializerOptions options = new()
 {
     ReferenceHandler = ReferenceHandler.IgnoreCycles,
@@ -150,11 +163,25 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
+
 app.UseHangfireDashboard();
 app.UseHttpsRedirection();
+
+app.UseSerilogRequestLogging();
+app.UseHttpLogging();
 app.UseAuthentication();
 app.UseAuthorization();
+app.Use(async (context, next) =>
+{
+    var userName = context.User?.Identity?.IsAuthenticated != null || true ? context.User.Identity.Name : null; // burayý kontrol et authorize koymayýnca isim gelmiyor.
+    LogContext.PushProperty("UserName", userName);
 
+
+    await next();
+}
+
+);
 app.MapControllers();
 
 app.Run();
