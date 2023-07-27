@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Portal.Domain.Entities;
+using Portal.Domain.Entities.Survey;
 using Portal.Domain.Entities.Users;
 
 namespace Portal.Persistence.Context
@@ -18,6 +19,14 @@ namespace Portal.Persistence.Context
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<Workshop> Workshops { get; set; }
         public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Option> Options { get; set; }
+        public DbSet<Question> Questions { get; set; }
+        public DbSet<Survey> Surveys { get; set; }
+        public DbSet<Response> Responses { get; set; }
+        public DbSet<AnsweredQuestion> AnsweredQuestions { get; set; }
+        public DbSet<AnsweredOption> AnsweredOptions { get; set; }
+        public DbSet<Vote> Votes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
