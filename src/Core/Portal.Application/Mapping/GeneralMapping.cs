@@ -9,6 +9,7 @@ using Portal.Application.Features.Commands.Seminars.UpdateSeminar;
 using Portal.Application.Features.Commands.Users.CreateUser;
 using Portal.Application.Features.Commands.Users.LoginUser;
 using Portal.Application.Features.Commands.Workshops.CreateWorkshop;
+using Portal.Application.Features.SurveyFeatures.Queries.Results;
 using Portal.Domain.Entities;
 using Portal.Domain.Entities.Survey;
 using Portal.Domain.Entities.Users;
@@ -35,7 +36,7 @@ namespace Portal.Application.Mapping
 
 
             //survey mappings
-            //CreateMap<GetResultByIdResponse, Survey>().ReverseMap();
+            CreateMap<GetResultByIdResponse, Survey>().ReverseMap();
 
             CreateMap<Survey, SurveyDTO>().ForMember(s => s.Questions, o => o.MapFrom(a => a.Questions)).ReverseMap();
 
@@ -62,7 +63,7 @@ namespace Portal.Application.Mapping
 
 
 
-            //CreateMap<Survey, GetResultByIdResponse>().ForMember(s => s.Questions, o => o.MapFrom(a => a.Questions)).ReverseMap();
+            CreateMap<Survey, GetResultByIdResponse>().ForMember(s => s.Questions, o => o.MapFrom(a => a.Questions)).ReverseMap();
 
             CreateMap<Question, QuestionDTO>().ForMember(s => s.Options, o => o.MapFrom(a => a.Options)).ReverseMap();
 
