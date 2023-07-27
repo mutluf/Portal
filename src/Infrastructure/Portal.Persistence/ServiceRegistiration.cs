@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Portal.Application.Abstractions.Services;
 using Portal.Application.Repositories;
+using Portal.Application.Repositories.SurveyRepositories;
 using Portal.Domain.Entities.Users;
 using Portal.Persistence.Context;
 using Portal.Persistence.Repositories;
@@ -25,6 +26,12 @@ namespace Portal.Persistence
             services.AddScoped<IWorkshopRepository, WorkshopRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IProfileRepository, ProfileRepository>();
+
+
+            services.AddScoped<IOptionRepository, OptionRepository>();
+            services.AddScoped<IQuestionRepository, QuestionRepository>();
+            services.AddScoped<ISurveyRepository, SurveyRepository>();
+            services.AddScoped<IResponseRepository, ResponseRepository>();
 
             services.AddScoped<IRoleService,RoleService>();
 
