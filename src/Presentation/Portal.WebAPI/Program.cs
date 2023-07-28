@@ -6,20 +6,24 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Portal.Application.Abstractions;
+using Portal.Domain.Entities;
 using Portal.Domain.Entities.Users;
 using Portal.Infrastructure;
+using Portal.Infrastructure.SqlTableDependency;
 using Portal.Persistence;
 using Portal.WebAPI;
 using Serilog;
 using Serilog.Context;
 using Serilog.Core;
 using Serilog.Sinks.MSSqlServer;
+using System;
 using System.Collections.ObjectModel;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-
+using Portal.Infrastructure.Hubs;
+using Portal.Infrastructure.SqlTableDependency.Middleware;
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -58,9 +62,9 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 });
-
-
 builder.Services.AddPersistenceService();
+
+builder.Services.AddSingleton<DatabaseSubscription<Message>>();
 
 #region columnoptions
 SqlColumn sqlColumn = new SqlColumn();
@@ -170,6 +174,7 @@ app.UseHttpsRedirection();
 
 app.UseSerilogRequestLogging();
 app.UseHttpLogging();
+app.UseDatabaseSubscription<DatabaseSubscription<Message>>("Users");
 app.UseAuthentication();
 app.UseAuthorization();
 app.Use(async (context, next) =>
@@ -182,6 +187,11 @@ app.Use(async (context, next) =>
 }
 
 );
+app.UseEndpoints(endpoints =>
+{
+
+    endpoints.MapHub<MessageHub>("/messageshub");
+});
 app.MapControllers();
 
 app.Run();
