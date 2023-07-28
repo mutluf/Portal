@@ -28,6 +28,8 @@ namespace Portal.Persistence.Context
         public DbSet<AnsweredOption> AnsweredOptions { get; set; }
         public DbSet<Vote> Votes { get; set; }
 
+        public DbSet<Message> Messages { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

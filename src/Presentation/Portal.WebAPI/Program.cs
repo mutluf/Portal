@@ -1,24 +1,24 @@
 using Hangfire;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Portal.Application.Abstractions;
 using Portal.Domain.Entities.Users;
-using Portal.Persistence;
-using System.Security.Claims;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Text.Json;
 using Portal.Infrastructure;
-using Serilog.Core;
+using Portal.Persistence;
+using Portal.WebAPI;
 using Serilog;
+using Serilog.Context;
+using Serilog.Core;
 using Serilog.Sinks.MSSqlServer;
 using System.Collections.ObjectModel;
-using Portal.WebAPI;
-using Microsoft.AspNetCore.HttpLogging;
-using Serilog.Context;
+using System.Security.Claims;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -65,7 +65,7 @@ builder.Services.AddPersistenceService();
 #region columnoptions
 SqlColumn sqlColumn = new SqlColumn();
 sqlColumn.ColumnName = "UserName";
-sqlColumn.DataType = System.Data.SqlDbType.NVarChar;
+//sqlColumn.DataType = System.Data.SqlDbType.NVarChar;
 sqlColumn.PropertyName = "UserName";
 sqlColumn.DataLength = 50;
 sqlColumn.AllowNull = true;

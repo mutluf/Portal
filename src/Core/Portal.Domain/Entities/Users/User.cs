@@ -9,5 +9,6 @@ namespace Portal.Domain.Entities.Users
         public Participant Participant { get; set; }
         public UserProfile UserProfile { get; set; }
         public ICollection<CategoryUser>? Categories { get; set; }
+        public ICollection<Message>? Messages { get; set; }
     }
 }

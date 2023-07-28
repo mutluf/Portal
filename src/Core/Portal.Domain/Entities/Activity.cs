@@ -9,6 +9,7 @@ namespace Portal.Domain.Entities
         public bool IsPublic { get; set; } = true;
         public bool IsCanceled { get; set; } = false;
         public Category Category { get; set; }
+        public Message? Message { get; set; }
         public int ParticipantCount { get; set; }
         public DateTime StartTime { get; set; }
     }
