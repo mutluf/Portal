@@ -47,7 +47,7 @@ namespace Portal.Infrastructure.SqlTableDependency
                     dataBack = e.Entity;
 
                     message = (Message)Convert.ChangeType(dataBack, typeof(Message));
-                     user = await _userManager.FindByIdAsync(message.Users.ToString());
+                     user = await _userManager.FindByIdAsync(message.Id.ToString());
                 }               
 
                 MessageUserDTO dto = new()

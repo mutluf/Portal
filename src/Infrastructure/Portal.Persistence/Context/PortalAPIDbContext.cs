@@ -29,6 +29,7 @@ namespace Portal.Persistence.Context
         public DbSet<Vote> Votes { get; set; }
 
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

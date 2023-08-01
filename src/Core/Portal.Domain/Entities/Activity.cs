@@ -10,6 +10,7 @@ namespace Portal.Domain.Entities
         public bool IsCanceled { get; set; } = false;
         public Category Category { get; set; }
         public Message? Message { get; set; }
+        public ICollection<Comment>? Comments { get; set; }
         public int ParticipantCount { get; set; }
         public DateTime StartTime { get; set; }
     }

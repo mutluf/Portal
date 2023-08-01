@@ -9,7 +9,9 @@ using Portal.Application.Abstractions;
 using Portal.Domain.Entities;
 using Portal.Domain.Entities.Users;
 using Portal.Infrastructure;
+using Portal.Infrastructure.Hubs;
 using Portal.Infrastructure.SqlTableDependency;
+using Portal.Infrastructure.SqlTableDependency.Middleware;
 using Portal.Persistence;
 using Portal.WebAPI;
 using Serilog;
@@ -22,8 +24,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Portal.Infrastructure.Hubs;
-using Portal.Infrastructure.SqlTableDependency.Middleware;
+
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -62,9 +63,9 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 });
+
 builder.Services.AddPersistenceService();
 
-builder.Services.AddSingleton<DatabaseSubscription<Message>>();
 
 #region columnoptions
 SqlColumn sqlColumn = new SqlColumn();

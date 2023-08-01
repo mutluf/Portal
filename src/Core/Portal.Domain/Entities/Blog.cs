@@ -12,5 +12,7 @@ namespace Portal.Domain.Entities
         public bool IsPublic { get; set; }
         public UserProfile UserProfile { get; set; }
         public int UserProfileId { get; set; }
+        public ICollection<Comment>? Comments { get; set; }
+
     }
 }
