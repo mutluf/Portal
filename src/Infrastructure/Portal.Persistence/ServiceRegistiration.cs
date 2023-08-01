@@ -34,6 +34,7 @@ namespace Portal.Persistence
             services.AddScoped<IResponseRepository, ResponseRepository>();
 
             services.AddScoped<IRoleService,RoleService>();
+            services.AddScoped<ICommentRepository,CommentRepository>();
 
             services.AddHangfire(configuration => configuration
                     .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
