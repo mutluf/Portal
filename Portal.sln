@@ -11,15 +11,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{C450CFCF-A970-484B-9376-37F723D7FB86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Domain", "src\Core\Portal.Domain\Portal.Domain.csproj", "{6186C468-937F-44BA-B98D-EC9FC10C8FA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portal.Domain", "src\Core\Portal.Domain\Portal.Domain.csproj", "{6186C468-937F-44BA-B98D-EC9FC10C8FA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Application", "src\Core\Portal.Application\Portal.Application.csproj", "{3B889046-EB83-403A-844E-B5D89B1D610E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portal.Application", "src\Core\Portal.Application\Portal.Application.csproj", "{3B889046-EB83-403A-844E-B5D89B1D610E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Infrastructure", "src\Infrastructure\Portal.Infrastructure\Portal.Infrastructure.csproj", "{588CDDDB-DAB9-4F4C-A9F5-32AE81F12C07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portal.Infrastructure", "src\Infrastructure\Portal.Infrastructure\Portal.Infrastructure.csproj", "{588CDDDB-DAB9-4F4C-A9F5-32AE81F12C07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Persistence", "src\Infrastructure\Portal.Persistence\Portal.Persistence.csproj", "{4654C89D-50CD-4FF9-9F5C-FE1E154CA185}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portal.Persistence", "src\Infrastructure\Portal.Persistence\Portal.Persistence.csproj", "{4654C89D-50CD-4FF9-9F5C-FE1E154CA185}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.WebAPI", "src\Presentation\Portal.WebAPI\Portal.WebAPI.csproj", "{48DA61CD-8A61-462D-AB6E-F2916BA518C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portal.WebAPI", "src\Presentation\Portal.WebAPI\Portal.WebAPI.csproj", "{48DA61CD-8A61-462D-AB6E-F2916BA518C6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{780DF32E-D25C-4E94-9D93-7E1BDC849C01}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{50E133E6-5FC8-4318-B21B-CD291971E0C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PortalUnitTest", "src\Test\UnitTest\PortalUnitTest\PortalUnitTest.csproj", "{012B1300-DC9D-4870-90C9-6C74C1FFF375}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +53,10 @@ Global
 		{48DA61CD-8A61-462D-AB6E-F2916BA518C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48DA61CD-8A61-462D-AB6E-F2916BA518C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48DA61CD-8A61-462D-AB6E-F2916BA518C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{012B1300-DC9D-4870-90C9-6C74C1FFF375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{012B1300-DC9D-4870-90C9-6C74C1FFF375}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{012B1300-DC9D-4870-90C9-6C74C1FFF375}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{012B1300-DC9D-4870-90C9-6C74C1FFF375}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +70,9 @@ Global
 		{588CDDDB-DAB9-4F4C-A9F5-32AE81F12C07} = {AC05AAEA-12DA-4DD9-8035-2F18A9220642}
 		{4654C89D-50CD-4FF9-9F5C-FE1E154CA185} = {AC05AAEA-12DA-4DD9-8035-2F18A9220642}
 		{48DA61CD-8A61-462D-AB6E-F2916BA518C6} = {C450CFCF-A970-484B-9376-37F723D7FB86}
+		{780DF32E-D25C-4E94-9D93-7E1BDC849C01} = {72E8E1A1-FBF1-4830-9475-A8A7858C77CF}
+		{50E133E6-5FC8-4318-B21B-CD291971E0C4} = {780DF32E-D25C-4E94-9D93-7E1BDC849C01}
+		{012B1300-DC9D-4870-90C9-6C74C1FFF375} = {50E133E6-5FC8-4318-B21B-CD291971E0C4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ED9AEF38-6655-4231-ADFA-4376176FAE48}
