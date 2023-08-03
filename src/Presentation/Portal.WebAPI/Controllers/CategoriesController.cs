@@ -25,7 +25,7 @@ namespace Portal.WebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Create([FromRoute] DeleteCategoryRequest request)
+        public async Task<IActionResult> Delete([FromRoute] DeleteCategoryRequest request)
         {
             await _mediator.Send(request);
             return Ok();
