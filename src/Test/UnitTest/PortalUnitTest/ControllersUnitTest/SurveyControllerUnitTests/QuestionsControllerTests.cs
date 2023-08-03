@@ -51,10 +51,7 @@ namespace PortalUnitTest.ControllersUnitTest.SurveyControllerUnitTests
             {
                 QuestionDTOs = new List<QuestionDTO>
                 {
-                    QuestionContent = "question",
-                    QuestionRate = 10,
-                    QuestionType = "Single",
-                    Options = null
+                   
                 }
             };
 
