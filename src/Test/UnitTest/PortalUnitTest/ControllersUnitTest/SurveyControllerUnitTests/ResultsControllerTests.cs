@@ -30,7 +30,7 @@ namespace PortalUnitTest.ControllersUnitTest.SurveyControllerUnitTests
                 ResponseCount=1,
                 SolvedCount=1,
                 Id = resultId,
-                Questions= null,
+                Questions = new() {},
                 Title= "Test",
                 UserId= 1,
             };
