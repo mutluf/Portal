@@ -32,7 +32,7 @@ namespace Portal.API.Controllers
         {            
             GetAllSurveysRequest request = new();
             GetAllSurveysResponse response = await _mediator.Send(request);
-            return Ok(response);
+            return Ok(response.SurveyDTOs);
         }
 
 
