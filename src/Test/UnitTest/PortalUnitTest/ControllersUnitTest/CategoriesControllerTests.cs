@@ -22,7 +22,7 @@ namespace PortalUnitTest.ControllersUnitTest
         public async Task Create_Should_Return_OkResult()
         {
             // Arrange
-            var request = new CreateCategoryRequest;
+            var request = new CreateCategoryRequest();
 
             // Act
             var result = await _categoriesController.Create(request);
