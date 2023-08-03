@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Portal.Application.DTOs
+﻿namespace Portal.Application.DTOs
 {
-    internal class RoleDTO
+    public class RoleDTO
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }
